@@ -50,12 +50,13 @@ it('Second test', function(done){
 
 
 
-// {"name":"extract_colors.png","type":"image/png","size":613553}
-// it('Second test', function(done){
-//     request('http://localhost:3000/test2', function(error, response, body){
-//         console.log(response.body);
-//         // expect(response.body).to.jsonFile();
-
-//         done();
-//     })
-// })
+it('File Analyse', function(done){
+    chai.request(server)
+    .post('/api/fileanalyse')
+    .attach('upfile', './test/extract_colors.png', 'extract_colors.png')
+    .set('Content-Type', 'image/png')
+    .catch((err) => {
+        expect(err).to.have.status(500)
+      })
+      done()
+    });
